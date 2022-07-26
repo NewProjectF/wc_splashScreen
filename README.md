@@ -6,7 +6,7 @@ wc_splashScreen es un componente de JS que se puede aplicar a un proyecto para s
 
 ## COMO USARLO 💻
 
-1. Descargarse el Web Component.
+1. Descárguese el Web Component.
 2. Agregue el Web Component a su proyecto.
 3. Enlace el JS del Web Component al archivo HTML de su proyecto. **\<script src="wc-splashScreen.js"\>\</script\>**.
 4. Añada la etiqueta **\<wc-splashscreen\>\</wc-splashscreen\>** en el apartado del HTML donde lo quiera usar.
