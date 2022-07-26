@@ -2,7 +2,7 @@
 
 wc_splashScreen es un componente de JS que se puede aplicar a un proyecto para simular una Splash Screen.
 
-[![image](https://user-images.githubusercontent.com/78848226/179373819-3dc23b02-7bc4-4bfa-ae18-65466a2a4ddb.png)](https://newprojectf.github.io/)
+[![image](https://user-images.githubusercontent.com/78848226/181117521-640d9169-6e71-4b85-ada3-8520523eb9c2.png)](https://newprojectf.github.io/)
 
 ## COMO USARLO 💻
 
