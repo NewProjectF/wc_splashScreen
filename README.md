@@ -11,7 +11,7 @@ wc_splashScreen es un componente de JS que se puede aplicar a un proyecto para s
 3. Enlace el JS del Web Component al archivo HTML de su proyecto. **\<script src="wc-splashScreen.js"\>\</script\>**.
 4. Añada la etiqueta **\<wc-splashscreen\>\</wc-splashscreen\>** en el apartado del HTML donde lo quiera usar.
 5. Dentro de la etiqueta de Splash Screen, podrá añadir etiquetas **\<span\>\</span\>**, las cuales contengan el atributo **slot** con el valor **elemento(nº)**, para poder añadir otras etiquetas o componentes dentro de este. Ej: **\<span slot="elemento1"\>\<p\>Etiqueta 1\</p\>\</span\>**
-5. Adicionalmente puede añadir los atributos abajo mencionados para cambiar el comportamiento del componente.
+6. Adicionalmente puede añadir los atributos abajo mencionados para cambiar el comportamiento del componente.
 
 ## ATRIBUTOS ADMITIDOS 👍
 
