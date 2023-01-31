@@ -8,7 +8,7 @@ class splashScreen extends HTMLElement {
         super();
 
         // Crear shadow root y establecer modo 'open'
-        const shadowRoot = this.attachShadow({ mode: 'open' });
+        this.attachShadow({ mode: 'open' });
 
         // Crear elementos y establecer atributos
         const section = document.createElement('section');
@@ -30,7 +30,7 @@ class splashScreen extends HTMLElement {
         style .setAttribute('href', 'wc_splashScreen/css/estilos.css');
 
         // Agregar elementos al shadow root
-        this.shadowRoot.appendChild(styleReset );
+        this.shadowRoot.appendChild(styleReset);
         this.shadowRoot.appendChild(style);
         this.shadowRoot.appendChild(section);
 
@@ -44,7 +44,7 @@ class splashScreen extends HTMLElement {
     connectedCallback() {
 
         // Establecer valores por defecto para los atributos si no se han establecido previamente
-        this.slots = this.hasAttribute('slots') ? this.getAttribute('slots') : 3;
+        this.slots = this.hasAttribute('slots') ? this.getAttribute('slots') : 1;
         this.time = this.hasAttribute('time') ? this.getAttribute('time') : 8;
         this.background = this.hasAttribute('background') ? this.getAttribute('background') : 'black';
         this.width = this.hasAttribute('width') ? this.getAttribute('width') : 'auto';
@@ -158,7 +158,7 @@ function removeWebComponent(section, time) {
 
     setTimeout(() => {
         section.remove();
-    }, time + 1 * 1000);
+    }, time + 1000);
 
 }
 
