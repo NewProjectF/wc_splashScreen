@@ -1,195 +1,193 @@
-// Crea una clase para el elemento titulo
+/** 
+ * Clase para el elemento título
+**/
 class splashScreen extends HTMLElement {
 
     constructor() {
 
-        // Llamar siempre a super primero en el constructor
         super();
 
-        // Crear una shadow root
-        var shadowRoot = this.attachShadow({ mode: 'open' });
+        // Crear shadow root y establecer modo 'open'
+        const shadowRoot = this.attachShadow({ mode: 'open' });
 
+        // Crear elementos y establecer atributos
+        const section = document.createElement('section');
+        section.classList.add('splashScreen');
 
-        // -- CREACION DE ELEMENTOS --
-        // Crear section splash screen
-        var section = document.createElement('section');
-        section.setAttribute('class', 'splashScreen');
-        // Crear div que envuelva a los slotted
-        var div = document.createElement('div');
-        div.setAttribute('class', 'divSlotted');
-
-
-        // -- CREACION DE ESTILOS EXTERNOS --
-        // Aplicar estilos por defecto externos al shadow dom
-        const linkElemReset = document.createElement('link');
-        linkElemReset.setAttribute('rel', 'stylesheet');
-        linkElemReset.setAttribute('href', 'wc_splashScreen/css/estilos_por_defecto.css');
-        // Aplicar estilos personalizados externos al shadow dom
-        const linkElem = document.createElement('link');
-        linkElem.setAttribute('rel', 'stylesheet');
-        linkElem.setAttribute('href', 'wc_splashScreen/css/estilos.css');
-
-
-        // adjuntar los elementos creados al shadow DOM
-        this.shadowRoot.appendChild(linkElem);
+        const div = document.createElement('div');
+        div.classList.add('divSlotted');
         section.appendChild(div);
+
+        // Agregar hojas de estilo
+        const styleReset  = document.createElement('link');
+        styleReset .setAttribute('rel', 'stylesheet');
+        styleReset .setAttribute('type', 'text/css');
+        styleReset .setAttribute('href', 'wc_splashScreen/css/estilos_por_defecto.css');
+
+        const style  = document.createElement('link');
+        style .setAttribute('rel', 'stylesheet');
+        style .setAttribute('type', 'text/css');
+        style .setAttribute('href', 'wc_splashScreen/css/estilos.css');
+
+        // Agregar elementos al shadow root
+        this.shadowRoot.appendChild(styleReset );
+        this.shadowRoot.appendChild(style);
         this.shadowRoot.appendChild(section);
 
     }
 
-    // Se ejecuta cada vez que el elemento se agrega al DOM
+    /** 
+     * Esta función se ejecuta automáticamente cuando el elemento se agrega al DOM.
+     * Se utiliza para realizar tareas específicas en el momento en que el componente se agrega al DOM, 
+     * como establecer valores por defecto para los atributos o inicializar variables.
+    **/
     connectedCallback() {
 
-        var shadowRoot = this.shadowRoot;
+        // Establecer valores por defecto para los atributos si no se han establecido previamente
+        this.slots = this.hasAttribute('slots') ? this.getAttribute('slots') : 3;
+        this.time = this.hasAttribute('time') ? this.getAttribute('time') : 8;
+        this.background = this.hasAttribute('background') ? this.getAttribute('background') : 'black';
+        this.width = this.hasAttribute('width') ? this.getAttribute('width') : 'auto';
 
-        if (!this.hasAttribute('slots')) { this.slots = 3; }
-        if (!this.hasAttribute('time')) { this.time = 8; }
-        if (!this.hasAttribute('background')) { this.background = "black"; }
-        if (!this.hasAttribute('width')) { this.width = "auto"; }
+        // Obtener el valor del atributo "time"
+        const time = this.getAttribute("time");
 
-        var section = shadowRoot.querySelector(".splashScreen");
-        var time = this.getAttribute("time");
-        removeWebComponent(section, time);
+        // Llamar a la función "removeWebComponent" y pasar como argumentos "section" y "time"
+        removeWebComponent(this.shadowRoot.querySelector(".splashScreen"), time);
 
     }
 
-    // Se especifican los atributos observados para que "attributeChangedCallback" funcione
+    /** 
+     * Esta función devuelve una lista con los nombres de los atributos que se deben observar. 
+     * Cuando se produzca un cambio en uno de estos atributos, se llamará a "attributeChangedCallback".
+    **/
     static get observedAttributes() {
         return ['slots', 'time', 'background', 'stars', 'width'];
     }
 
-    // Se ejecuta cada vez que uno de los atributos del elemento cambia de alguna manera
-    // Produce cambios dependiendo de los atributos utilizados en la etiqueta
+    /** 
+     * Esta función  se activa cuando un atributo es modificado en tiempo de ejecución y está registrado en observedAttributes.
+    **/
     attributeChangedCallback(attrName, oldVal, newVal) {
 
-        var shadowRoot = this.shadowRoot;
-        var section = shadowRoot.querySelector(".splashScreen");
-        var div = shadowRoot.querySelector(".divSlotted");
+        // Obtener el shadowRoot y los elementos necesarios
+        const shadowRoot = this.shadowRoot;
+        const section = shadowRoot.querySelector(".splashScreen");
+        const div = shadowRoot.querySelector(".divSlotted");
 
+        // Evaluar el nombre del atributo y realizar la acción correspondiente
         switch (attrName) {
             case "time":
                 removeWebComponent(section, newVal);
                 break;
             case "slots":
-                numSlots(div, newVal);
+                createSlots(div, newVal);
                 break;
             case "background":
                 section.style.background = newVal;
                 break;
             case "stars":
-                var section = shadowRoot.querySelector(".splashScreen");
                 addStars(section);
                 break;
             case "width":
-                shadowRoot.querySelector('.divSlotted').style.width = newVal;
+                div.style.width = newVal;
                 break;
         }
 
     }
 
-    //Getter
+    /** 
+     * Getter
+    **/
     get slots() {
-        return this.hasAttribute('slots');
+        return this.getAttribute('slots');
     }
     get time() {
-        return this.hasAttribute('time');
+        return this.getAttribute('time');
     }
     get background() {
-        return this.hasAttribute('background');
+        return this.getAttribute('background');
     }
     get width() {
-        return this.hasAttribute('width');
+        return this.getAttribute('width');
     }
 
-    //Setter
+    /** 
+     * Setter
+    **/
     set slots(val) {
-        if (val) {
-            this.setAttribute('slots', val);
-        } else {
-            this.removeAttribute('slots');
-        }
+        this.setAttribute('slots', val ? val : '');
     }
     set time(val) {
-        if (val) {
-            this.setAttribute('time', val);
-        } else {
-            this.removeAttribute('time');
-        }
+        this.setAttribute('time', val ? val : '');
     }
     set background(val) {
-        if (val) {
-            this.setAttribute('background', val);
-        } else {
-            this.removeAttribute('background');
-        }
+        this.setAttribute('background', val ? val : '');
     }
     set width(val) {
-        if (val) {
-            this.setAttribute('width', val);
-        } else {
-            this.removeAttribute('width');
-        }
+        this.setAttribute('width', val ? val : '');
     }
 
 }
 
+/** 
+ * Esta función crea los slots donde se podrán añadir otros web components.
+**/
+function createSlots(container, numSlots) {
 
-// Funcion que crea los slots
-function numSlots(div, slots) {
+    for (let i = 1; i <= numSlots; i++) {
 
-    for (let i = 1; i <= slots; i++) {
-
-        var slot = document.createElement('slot');
+        const slot = document.createElement('slot');
         slot.setAttribute('name', 'elemento' + i);
-
-        div.appendChild(slot);
+        container.appendChild(slot);
 
     }
 
 }
 
-// Funcion que elimina el web component
+/** 
+ * Esta función elimina el web component al finalizar el tiempo.
+**/
 function removeWebComponent(section, time) {
 
-    timeForAnimation = (parseInt(time) + 1) * 1000;
-    time = time * 1000;
-
-    setTimeout(function() {
+    setTimeout(() => {
         section.style.transition = "all 1s ease";
         section.style.transform = "scale(1.2)";
         section.style.opacity = 0;
-    }, time);
+    }, time * 1000);
 
-    setTimeout(function() {
+    setTimeout(() => {
         section.remove();
-    }, timeForAnimation);
-
+    }, time + 1 * 1000);
 
 }
 
-// Funcion añade estrellas
+/** 
+ * Esta función se encarga de añadir estrellas en caso de que se hayan establecido en el web component.
+**/
 function addStars(section) {
 
+    // Crea un contenedor temporal de elementos
+    const starContainer = document.createDocumentFragment();
+
+    // Itera 10 veces para crear 10 elementos span con la clase "star"
     for (let i = 1; i <= 10; i++) {
-
-        var star = document.createElement('span');
-        star.setAttribute('class', 'star');
-
-        section.appendChild(star);
-
+        const star = document.createElement('span');
+        star.classList.add('star');
+        starContainer.appendChild(star);
     }
 
+    // Itera 15 veces para crear 15 elementos span con la clase "dots"
     for (let e = 1; e <= 15; e++) {
-
-        var dots = document.createElement('span');
-        dots.setAttribute('class', 'dots');
-
-        section.appendChild(dots);
-
+        const dots = document.createElement('span');
+        dots.classList.add('dots');
+        starContainer.appendChild(dots);
     }
+
+    // Agrega el contenedor temporal de elementos al elemento "section"
+    section.appendChild(starContainer);
 
 }
-
 
 // Definir el nuevo elemento
 customElements.define("wc-splashscreen", splashScreen);
