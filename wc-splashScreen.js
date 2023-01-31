@@ -43,11 +43,17 @@ class splashScreen extends HTMLElement {
     **/
     connectedCallback() {
 
+        // Valores por defecto de los atributos
+        const DEFAULT_NUM_SLOTS = 1;
+        const DEFAULT_TIME = 8;
+        const DEFAULT_BACKGROUND = "black";
+        const DEFAULT_WIDTH = "auto";
+
         // Establecer valores por defecto para los atributos si no se han establecido previamente
-        this.slots = this.hasAttribute('slots') ? this.getAttribute('slots') : 1;
-        this.time = this.hasAttribute('time') ? this.getAttribute('time') : 8;
-        this.background = this.hasAttribute('background') ? this.getAttribute('background') : 'black';
-        this.width = this.hasAttribute('width') ? this.getAttribute('width') : 'auto';
+        this.slots = this.hasAttribute('slots') ? this.getAttribute('slots') : DEFAULT_NUM_SLOTS;
+        this.time = this.hasAttribute('time') ? this.getAttribute('time') : DEFAULT_TIME;
+        this.background = this.hasAttribute('background') ? this.getAttribute('background') : DEFAULT_BACKGROUND;
+        this.width = this.hasAttribute('width') ? this.getAttribute('width') : DEFAULT_WIDTH;
 
         // Obtener el valor del atributo "time"
         const time = this.getAttribute("time");
