@@ -52,8 +52,8 @@ class splashScreen extends HTMLElement {
         // Obtener el valor del atributo "time"
         const time = this.getAttribute("time");
 
-        // Llamar a la función "removeWebComponent" y pasar como argumentos "section" y "time"
-        removeWebComponent(this.shadowRoot.querySelector(".splashScreen"), time);
+        // Llamar a la función "removeSplashScreen" y pasar como argumentos "section" y "time"
+        removeSplashScreen(this.shadowRoot.querySelector(".splashScreen"), time);
 
     }
 
@@ -78,7 +78,7 @@ class splashScreen extends HTMLElement {
         // Evaluar el nombre del atributo y realizar la acción correspondiente
         switch (attrName) {
             case "time":
-                removeWebComponent(section, newVal);
+                removeSplashScreen(section, newVal);
                 break;
             case "slots":
                 createSlots(div, newVal);
@@ -148,7 +148,7 @@ function createSlots(container, numSlots) {
 /** 
  * Esta función elimina el web component al finalizar el tiempo.
 **/
-function removeWebComponent(section, time) {
+function removeSplashScreen(section, time) {
 
     setTimeout(() => {
         section.style.transition = "all 1s ease";
