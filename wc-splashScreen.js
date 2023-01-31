@@ -22,12 +22,12 @@ class splashScreen extends HTMLElement {
         const styleReset  = document.createElement('link');
         styleReset .setAttribute('rel', 'stylesheet');
         styleReset .setAttribute('type', 'text/css');
-        styleReset .setAttribute('href', 'wc_splashScreen/css/estilos_por_defecto.css');
+        styleReset .setAttribute('href', '../wc_splashScreen/css/estilos_por_defecto.css');
 
         const style  = document.createElement('link');
         style .setAttribute('rel', 'stylesheet');
         style .setAttribute('type', 'text/css');
-        style .setAttribute('href', 'wc_splashScreen/css/estilos.css');
+        style .setAttribute('href', '../wc_splashScreen/css/estilos.css');
 
         // Agregar elementos al shadow root
         this.shadowRoot.appendChild(styleReset);
