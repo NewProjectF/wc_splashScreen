@@ -1,7 +1,7 @@
 /** 
  * Clase para el elemento título
 **/
-class splashScreen extends HTMLElement {
+class SplashScreen extends HTMLElement {
 
     constructor() {
 
@@ -211,4 +211,4 @@ function addStars(section) {
 }
 
 // Definir el nuevo elemento
-customElements.define("wc-splashscreen", splashScreen);
+customElements.define("wc-splashscreen", SplashScreen);
