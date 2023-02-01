@@ -30,7 +30,7 @@ Un componente web para mostrar una pantalla de bienvenida animada, que se puede 
 `<span slot="elemento2"><p>Este es un ejemplo de uso del componente WC-Splashscreen</p></span>`   
 `</wc-splashscreen>`  
 
-**6.** Adicionalmente puede añadir los atributos abajo mencionados para cambiar el comportamiento del componente.👇  
+**6.** Adicionalmente puede añadir los atributos abajo mencionados para cambiar el comportamiento del componente.  
 
 ## 👍 ATRIBUTOS ADMITIDOS
 
