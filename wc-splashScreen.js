@@ -84,35 +84,23 @@ class SplashScreen extends HTMLElement {
         // Evaluar el nombre del atributo y realizar la acción correspondiente
         switch (attrName) {
             case "time":
-                if (!isNaN(newVal) && newVal >= 0){
-                    removeSplashScreen(section, newVal);
-                } else {
-                    throw new Error("El tiempo debe ser un número mayor o igual a 0.");
-                }
+                if (!isNaN(newVal) && newVal >= 0) removeSplashScreen(section, newVal);
+                else throw new Error("Time must be a number >= 0.");
                 break;
             case "slots":
-                if (!isNaN(newVal) && newVal >= 0) {
-                    createSlots(div, newVal);
-                } else {
-                    throw new Error("El número de slots debe ser un número mayor o iagual a 0.");
-                }
+                if (!isNaN(newVal) && newVal >= 0) createSlots(div, newVal);
+                else throw new Error("Slots must be a number >= 0.");
                 break;
             case "background":
-                    section.style.background = newVal;
+                section.style.background = newVal;
                 break;
             case "stars":
-                if (newVal === "true") {
-                    addStars(section);
-                } else{
-                    throw new Error("El atributo stars solo admite true.");
-                }
+                if (newVal === "true") addStars(section);
+                else throw new Error("Stars attribute only accepts 'true'.");
                 break;
             case "width":
-                if (typeof newVal == "string" && ((newVal === "auto" || (newVal.endsWith("%") && parseInt(newVal) >= 0 && parseInt(newVal) <= 100)))) {
-                    div.style.width = newVal;
-                } else {
-                    throw new Error("El valor de 'width' debe ser 'auto' o un porcentaje del 0 al 100%");
-                }
+                if (typeof newVal == "string" && (newVal === "auto" || (newVal.endsWith("%") && parseInt(newVal) >= 0 && parseInt(newVal) <= 100))) div.style.width = newVal;
+                else throw new Error("Width must be 'auto' or a percentage 0-100%.");
                 break;
         }
     }
